@@ -13,7 +13,7 @@ include:
     artifact-name: sofle-right
 
   # Dongle — custom shield acting as BLE central, USB HID to host
-  - board: nice_nano//zmk
+  - board: nice_nano
     shield: sofle_dongle
     snippet: zmk-usb-logging   # remove this line after first successful build if you don't want USB logging
     cmake-args: >-
