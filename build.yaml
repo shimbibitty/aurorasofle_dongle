@@ -1,19 +1,19 @@
 ---
 include:
   # Left half — peripheral
-  - board: nice_nano
+  - board: nice_nano//zmk
     shield: splitkb_aurora_sofle_left
     cmake-args: -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
     artifact-name: sofle-left
 
   # Right half — peripheral
-  - board: nice_nano
+  - board: nice_nano//zmk
     shield: splitkb_aurora_sofle_right
     cmake-args: -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
     artifact-name: sofle-right
 
   # Dongle — custom shield acting as BLE central, USB HID to host
-  - board: nice_nano
+  - board: nice_nano//zmk
     shield: sofle_dongle
     snippet: zmk-usb-logging   # remove this line after first successful build if you don't want USB logging
     cmake-args: >-
@@ -22,6 +22,6 @@ include:
     artifact-name: sofle-dongle
 
   # Settings reset — flash to all three boards if you have pairing issues
-  - board: nice_nano
+  - board: nice_nano//zmk
     shield: settings_reset
     artifact-name: settings-reset
