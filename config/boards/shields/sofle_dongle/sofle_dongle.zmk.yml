@@ -3,5 +3,3 @@ id: sofle_dongle
 name: Aurora Sofle Dongle (Central)
 type: shield
 url: https://github.com/zmkfirmware/zmk
-requires:
-  - pro_micro
