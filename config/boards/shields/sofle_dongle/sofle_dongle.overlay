@@ -1,0 +1,17 @@
+// Dongle overlay — nice!nano v2 acting as BLE central + USB HID output
+// The dongle has no keys or encoders of its own; it relays everything
+// received from the left and right peripherals to the USB host.
+
+/ {
+    chosen {
+        zmk,kscan = &kscan0;
+    };
+
+    // Dummy kscan — the dongle has no physical matrix.
+    // ZMK requires a kscan node even for a pure-central build.
+    kscan0: kscan_0 {
+        compatible = "zmk,kscan-gpio-direct";
+        label = "KSCAN";
+        input-gpios;   // empty — no keys on the dongle
+    };
+};
