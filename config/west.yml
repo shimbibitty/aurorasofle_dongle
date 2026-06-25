@@ -7,7 +7,7 @@ manifest:
   projects:
     - name: zmk
       remote: zmkfirmware
-      revision: main
+      revision: v0.3
       import: app/west.yml
     # splitkb Aurora module — provides the Aurora Sofle shield definitions
     - name: zmk-aurora
