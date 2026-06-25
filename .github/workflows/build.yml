@@ -1,4 +1,15 @@
-on: [push, pull_request, workflow_dispatch]
+name: Build ZMK firmware
+
+on:
+  push:
+    paths:
+      - "config/**"
+      - "build.yaml"
+  pull_request:
+    paths:
+      - "config/**"
+      - "build.yaml"
+  workflow_dispatch:   # allows manual runs from the Actions tab
 
 jobs:
   build:
