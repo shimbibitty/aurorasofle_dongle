@@ -1,8 +1,10 @@
 // ============================================================
-//  Aurora Sofle v2 — ZMK Keymap
-//  Board:  splitkb Aurora Sofle (left + right + dongle)
-//  Layers: 0 QWERTY  1 LOWER  2 RAISE  3 ADJUST  4 NUMPAD
+//  splitkb Aurora Sofle v2 — ZMK Keymap
+//  Board:  splitkb Aurora Sofle (left + right)
+//  Layers: 0 QWERTY  1 LOWER  2 RAISE  3 NUMPAD
+//  No RGB
 // ============================================================
+
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
@@ -14,17 +16,16 @@
 #define QWERTY  0
 #define LOWER   1
 #define RAISE   2
-#define ADJUST  3
-#define NUMPAD 	4
+#define NUMPAD 	3
 
 // ── Convenience aliases ──────────────────────────────────────
 #define XXXXXXX &none
 #define _______ &trans
 #define TILDESC &mt TILDE ESC
-#define SHFTESC &mt RSHFT RETURN
-#define SPCELOW &lt 1 SPACE
-#define ENTRNUM	&lt 4 RETURN
-#define SPCRISE &lt 2 SPACE
+#define SHFTENT &mt RSHFT RETURN
+#define SPCLOW  &lt 1 SPACE
+#define ENTNUM	&lt 3 RETURN
+#define SPCRSE  &lt 2 SPACE
 
 / {
     // ── Combos ──────────────────────────────────────────────
@@ -59,19 +60,19 @@
         // │ TAB │  Q  │  W  │  E  │  R  │  T  │                │  Y  │  U  │  I  │  O  │  P  │ DEL │
         // ├─────┼─────┼─────┼─────┼─────┼─────┤                ├─────┼─────┼─────┼─────┼─────┼─────┤
         // │CAPS │  A  │  S  │  D  │  F  │  G  │                │  H  │  J  │  K  │  L  │  ;  │  '  │
-        // ├─────┼─────┼─────┼─────┼─────┼─────┼─────┐    ┌─────┼─────┼─────┼─────┼─────┼─────┼─────┴──┐
-        // │SHFT │  Z  │  X  │  C  │  V  │  B  │MUTE │    │PLAY │  N  │  M  │  ,  │  .  │  /  │SHFT/RET│
-        // └─────┴─────┼─────┼─────┼─────┼─────┼─────┴─┐  ├─────┼─────┼─────┼─────┼─────┼─────┴────────┘
-        //             │ GUI │ ALT │CTRL │SPC/L│RET/NUM│  │BSPC │SPC/R│CTRL │ ALT │ GUI │
-        //             └─────┴─────┴─────┴─────┴───────┘  └─────┴─────┴─────┴─────┴─────┘
+        // ├─────┼─────┼─────┼─────┼─────┼─────┼─────┐    ┌─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+        // │SHFT │  Z  │  X  │  C  │  V  │  B  │MUTE │    │PLAY │  N  │  M  │  ,  │  .  │  /  │S/RET│
+        // └─────┴─────┼─────┼─────┼─────┼─────┼─────┤    ├─────┼─────┼─────┼─────┼─────┼─────┴─────┘
+        //             │ GUI │ ALT │CTRL │SPC/L│RET/N│    │BSPC │SPC/R│CTRL │ ALT │ GUI │
+        //             └─────┴─────┴─────┴─────┴─────┘    └─────┴─────┴─────┴─────┴─────┘
         qwerty_layer {
             display-name = "QWERTY";
             bindings = <
-                &kp ESC   &kp N1 &kp N2    &kp N3   &kp N4   &kp N5                      &kp N6  &kp N7    &kp N8    &kp N9   &kp N0   &kp BSPC
-				&kp TAB   &kp Q  &kp W     &kp E    &kp R    &kp T                       &kp Y   &kp U     &kp I     &kp O    &kp P    &kp DEL
-				&kp CAPS  &kp A  &kp S     &kp D    &kp F    &kp G                       &kp H   &kp J     &kp K     &kp L    &kp SEMI &kp SQT
-				&kp LSHFT &kp Z  &kp X     &kp C    &kp V    &kp B &kp C_MUTE   &kp C_PP &kp N   &kp M     &kp COMMA &kp DOT  &kp FSLH SHFTESC
-						  &kp LGUI &kp LALT &kp LCTRL SPCELOW ENTRNUM   		&kp BSPC SPCRISE &kp RCTRL &kp RALT  &kp RGUI
+                &kp ESC   &kp N1 &kp N2   &kp N3   &kp N4    &kp N5                        &kp N6  &kp N7    &kp N8    &kp N9   &kp N0   &kp BSPC
+				&kp TAB   &kp Q  &kp W    &kp E    &kp R     &kp T                         &kp Y   &kp U     &kp I     &kp O    &kp P    &kp DEL
+				&kp CAPS  &kp A  &kp S    &kp D    &kp F     &kp G                         &kp H   &kp J     &kp K     &kp L    &kp SEMI &kp SQT
+				&kp LSHFT &kp Z	 &kp X    &kp C    &kp V  	 &kp B	 &kp C_MUTE	  &kp C_PP &kp N   &kp M     &kp COMMA &kp DOT  &kp FSLH SHFTENT
+								 &kp LGUI &kp LALT &kp LCTRL SPCLOW  ENTNUM   	  &kp BSPC SPCRSE  &kp RCTRL &kp RALT  &kp RGUI
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp C_NEXT C_PREV>;
         };
@@ -83,19 +84,19 @@
         // │ TAB │     │     │PGUP │     │     │                │     │CTR+U│  UP │     │     │ DEL │
         // ├─────┼─────┼─────┼─────┼─────┼─────┤                ├─────┼─────┼─────┼─────┼─────┼─────┤
         // │     │ ALL │SAVE │PGDN │PRNT │     │                │HOME │LEFT │DOWN │RIGHT│ END │     │
-        // ├─────┼─────┼─────┼─────┼─────┼─────┼─────┐    ┌─────┼─────┼─────┼─────┼─────┼─────┼─────┴──┐
-        // │SHFT │UNDO │ CUT │COPY │PASTE│     │MUTE │    │PLAY │     │PASTE│COPY │ CUT │     │SHFT/RET│
-        // └─────┴─────┼─────┼─────┼─────┼─────┼─────┴─┐  ├─────┼─────┼─────┼─────┼─────┼─────┴────────┘
-        //             │ GUI │ ALT │CTRL │SPC/L│RET/NUM│  │BSPC │SPC/R│CTRL │ ALT │ GUI │
-        //             └─────┴─────┴─────┴─────┴───────┘  └─────┴─────┴─────┴─────┴─────┘
+        // ├─────┼─────┼─────┼─────┼─────┼─────┼─────┐    ┌─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+        // │SHFT │UNDO │ CUT │COPY │PASTE│     │MUTE │    │PLAY │     │PASTE│COPY │ CUT │     │S/RET│
+        // └─────┴─────┼─────┼─────┼─────┼─────┼─────┤    ├─────┼─────┼─────┼─────┼─────┼─────┴─────┘
+        //             │ GUI │ ALT │CTRL │     │RET/N│    │CBSPC│SPC/R│CTRL │ ALT │ GUI │
+        //             └─────┴─────┴─────┴─────┴─────┘    └─────┴─────┴─────┴─────┴─────┘
         lower_layer {
             display-name = "LOWER";
             bindings = <
-				&trans    &none     &none     &none     &none      &none                   &none       &none      &none     &none      &kp MINUS  &trans
-				&trans    &none     &none     &kp PGUP  &none      &none                   &none       &kp RC(U)  &kp UP    &none      &none      &trans
-				&none     &kp LC(A) &kp LC(S) &kp PGDN  &kp PSCRN  &none		           &kp HOME    &kp LEFT   &kp DOWN  &kp RIGHT  &kp END    &none
-				&trans    &kp LC(Z) &kp LC(X) &kp LC(C) &kp LC(V)  &trans  &trans  &trans  &none       &kp LC(V)  &kp LC(C) &kp LC(X)  &none      &trans
-									&trans    &trans    &trans     &trans  &trans  &trans  &trans      &trans     &trans    &trans
+				&trans    &none     &none     &none     &none      &none                   		  &none       &none      &none     &none      &kp MINUS  &trans
+				&trans    &none     &none     &kp PGUP  &none      &none                   		  &none       &kp RC(U)  &kp UP    &none      &none      &trans
+				&none     &kp LC(A) &kp LC(S) &kp PGDN  &kp PSCRN  &none		           		  &kp HOME    &kp LEFT   &kp DOWN  &kp RIGHT  &kp END    &none
+				&trans    &kp LC(Z) &kp LC(X) &kp LC(C) &kp LC(V)  &trans	&trans	&trans  	  &none       &kp LC(V)  &kp LC(C) &kp LC(X)  &none      &trans
+									&trans    &trans    &trans     &trans	&trans	&kp LC(BSPC)  &trans      &trans     &trans    &trans
             >;
              sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
@@ -107,11 +108,11 @@
         // │ TAB │ F1  │ F2  │ F3  │ F4  │ F5  │                │  !  │  @  │  #  │  $  │  %  │  ^  │
         // ├─────┼─────┼─────┼─────┼─────┼─────┤                ├─────┼─────┼─────┼─────┼─────┼─────┤
         // │     │ F5  │ F6  │ F7  │ F8  │     │                │  ~  │  _  │  -  │  +  │  =  │  \  │
-        // ├─────┼─────┼─────┼─────┼─────┼─────┼─────┐    ┌─────┼─────┼─────┼─────┼─────┼─────┼─────┴──┐
-        // │SHFT │ F9  │ F10 │ F11 │ F12 │     │MUTE │    │PLAY │  *  │  &  │  [  │  ]  │  |  │SHFT/RET│
-        // └─────┴─────┼─────┼─────┼─────┼─────┼─────┴─┐  ├─────┼─────┼─────┼─────┼─────┼─────┴────────┘
-        //             │ GUI │ ALT │CTRL │SPC/L│RET/NUM│  │BSPC │SPC/R│CTRL │ ALT │ GUI │
-        //             └─────┴─────┴─────┴─────┴───────┘  └─────┴─────┴─────┴─────┴─────┘
+        // ├─────┼─────┼─────┼─────┼─────┼─────┼─────┐    ┌─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+        // │SHFT │ F9  │ F10 │ F11 │ F12 │     │MUTE │    │PLAY │  *  │  &  │  [  │  ]  │  |  │S/RET│
+        // └─────┴─────┼─────┼─────┼─────┼─────┼─────┤    ├─────┼─────┼─────┼─────┼─────┼─────┴─────┘
+        //             │ GUI │ ALT │CTRL │SPC/L│RET/N│    │BSPC │     │CTRL │ ALT │ GUI │
+        //             └─────┴─────┴─────┴─────┴─────┘    └─────┴─────┴─────┴─────┴─────┘
         raise_layer {
             display-name = "RAISE";
              bindings = <
@@ -124,52 +125,28 @@
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
-
-        // ── Layer 3 — ADJUST  (BT, output, power) ───────────
-		// ┌─────┬─────┬─────┬─────┬─────┬─────┐                ┌─────┬─────┬─────┬─────┬─────┬─────┐
-        // │     │     │     │     │     │     │                │     │     │     │     │     │     │
-        // ├─────┼─────┼─────┼─────┼─────┼─────┤                ├─────┼─────┼─────┼─────┼─────┼─────┤
-        // │     │     │     │     │     │     │                │     │     │     │     │     │     │
-        // ├─────┼─────┼─────┼─────┼─────┼─────┤                ├─────┼─────┼─────┼─────┼─────┼─────┤
-        // │     │ BT0 │ BT1 │ BT2 │ BT3 │ BT4 │                │     │     │     │     │     │     │
-        // ├─────┼─────┼─────┼─────┼─────┼─────┼─────┐    ┌─────┼─────┼─────┼─────┼─────┼─────┼─────┤
-        // │     │     │     │     │     │     │     │    │     │     │     │     │     │     │     │
-        // └─────┴─────┼─────┼─────┼─────┼─────┼─────┤    ├─────┼─────┼─────┼─────┼─────┼─────┴─────┘
-        //             │ USB │ BLE │     │     │     │    │     │     │TGPWR│     │     │
-        //             └─────┴─────┴─────┴─────┴─────┘    └─────┴─────┴─────┴─────┴─────┘
-        adjust_layer {
-            display-name = "ADJUST";
-            bindings = <
-                &none	&none			&none			&none			&none			&none								&none	&none	&none	&none	&none	&none
-                &none	&none			&none			&none			&none			&none								&none	&none	&none	&none	&none	&none
-                &none	&bt BT_SEL 0	&bt BT_SEL 1	&bt BT_SEL 2	&bt BT_SEL 3	&bt BT_SEL 4						&none	&none	&none	&none	&none	&none
-                &none	&bt BT_CLR  	&none			&none			&none			&none			&none	&none		&none	&none	&none	&none	&none	&none 
-										&out OUT_USB	&out OUT_BLE	&none			&none 			&none	&none		&none   &ext_power EP_TOG &none	&none
-            >;
-            sensor-bindings = <&rot_kp C_VOL_DN C_VOL_UP &rot_kp PG_DN PG_UP>;
-        };
 		
-		// ── Layer 4 — NUMPAD (Numpad) ───────────
+		// ── Layer 3 — NUMPAD (Numpad) ───────────
 		// ┌─────┬─────┬─────┬─────┬─────┬─────┐                ┌─────┬─────┬─────┬─────┬─────┬─────┐
-        // │ ESC │     │     │     │     │     │                │     │     │     │     │  -  │BSPC │
+        // │ ESC │     │     │     │     │     │                │     │NUMLK│     │     │  -  │BSPC │
         // ├─────┼─────┼─────┼─────┼─────┼─────┤                ├─────┼─────┼─────┼─────┼─────┼─────┤
-        // │ TAB │     │     │     │NUMLK│     │                │  /  │  7  │  8  │  9  │  -  │ DEL │
+        // │ TAB │     │     │     │     │     │                │  /  │  7  │  8  │  9  │  -  │ DEL │
         // ├─────┼─────┼─────┼─────┼─────┼─────┤                ├─────┼─────┼─────┼─────┼─────┼─────┤
         // │     │     │     │     │INSRT│     │                │     │  4  │  5  │  6  │  +  │     │
-        // ├─────┼─────┼─────┼─────┼─────┼─────┼─────┐    ┌─────┼─────┼─────┼─────┼─────┼─────┼─────┴──┐
-        // │SHFT │     │     │     │     │     │MUTE │    │PLAY │  *  │  1  │  2  │  3  │  +  │SHFT/RET│
-        // └─────┴─────┼─────┼─────┼─────┼─────┼─────┤    ├─────┼─────┼─────┼─────┼─────┼─────┴────────┘
+        // ├─────┼─────┼─────┼─────┼─────┼─────┼─────┐    ┌─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+        // │SHFT │     │     │     │     │     │MUTE │    │PLAY │  *  │  1  │  2  │  3  │  +  │S/RET│
+        // └─────┴─────┼─────┼─────┼─────┼─────┼─────┤    ├─────┼─────┼─────┼─────┼─────┼─────┴─────┘
         //             │ GUI │ ALT │CTRL │SPC/L│     │    │RET  │SPC  │  0  │     │  .  │
         //             └─────┴─────┴─────┴─────┴─────┘    └─────┴─────┴─────┴─────┴─────┘
         numpad_layer {
+			display-name = "NUMPAD";
             bindings = <
-				&kp ESC		&none	&none	&none		&none	&none						&none			&none	&none	&none	&kp MINUS		&kp BSPC
-				&kp TAB		&none	&none	&kp KP_NUM	&none	&none						&kp KP_DIVIDE	&kp N7	&kp N8	&kp N9	&kp KP_MINUS	&kp DEL
-				&none		&none	&none	&kp INS		&none	&none						&none			&kp N4	&kp N5	&kp N6	&kp KP_PLUS		&none
-				&kp LSHFT	&none	&none	&none		&none	&none	&none		&none	&kp KP_MULTIPLY	&kp N1	&kp N2	&kp N3	&kp KP_PLUS		SHFTESC
-									&kp LGUI &kp LALT &kp LCTRL SPCELOW	&trans   	&kp KP_ENTER &kp SPACE	&kp N0	&none	&kp KP_DOT
+				&kp ESC		&none	&none	 &none	  &none	    &none						&none			&kp KP_NUM &none	&none	&kp MINUS		&kp BSPC
+				&kp TAB		&none	&none	 &none	  &none	    &none						&kp KP_DIVIDE	&kp N7	   &kp N8	&kp N9	&kp KP_MINUS	&kp DEL
+				&none		&none	&none	 &kp INS  &none	    &none						&none			&kp N4	   &kp N5	&kp N6	&kp KP_PLUS		&none
+				&kp LSHFT	&none	&none	 &none	  &none	    &none	&none		&none	&kp KP_MULTIPLY	&kp N1	   &kp N2	&kp N3	&kp KP_PLUS		SHFTENT
+									&kp LGUI &kp LALT &kp LCTRL SPCLOW	&trans   	&kp KP_ENTER &kp SPACE  &kp N0	   &none    &kp KP_DOT
             >;
-
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
     };
