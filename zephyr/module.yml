@@ -1,6 +1,4 @@
 build:
-  cmake: .
-  kconfig: Kconfig
   settings:
-    dts_root: .
+    # Folder containing a "boards" folder (. = root)
     board_root: .
