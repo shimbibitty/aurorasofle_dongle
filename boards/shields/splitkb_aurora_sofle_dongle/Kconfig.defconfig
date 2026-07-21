@@ -5,20 +5,15 @@ config ZMK_KEYBOARD_NAME
 
 config ZMK_SPLIT_ROLE_CENTRAL
     default y
+	
+endif
+
+
+
+if SHIELD_SPLITKB_AURORA_SOFLE_DONGLE || SHIELD_SPLITKB_AURORA_SOFLE_LEFT || SHIELD_SPLITKB_AURORA_SOFLE_RIGHT
 
 config ZMK_SPLIT
     default y
-
-# left + right = 2 peripherals
-config ZMK_SPLIT_BLE_CENTRAL_PERIPHERALS
-    default 2
-
-# peripherals (2) + desired BT host profiles (default 5) = 7
-config BT_MAX_CONN
-    default 7
-
-config BT_MAX_PAIRED
-    default 7
 
 if ZMK_DISPLAY
 
