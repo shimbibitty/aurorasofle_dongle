@@ -4,6 +4,7 @@ Wireless split keyboard running ZMK with a **dongle** architecture:
 - **Left half** — nice!nano v2
 - **Right half** — nice!nano v2
 - **Dongle** — nRF52840 & OLED
+    - https://pandakb.com/shop/keyboard-kit/pandakb-zmk-split-keyboard-dongle/
 
 This means both halves are *fully wireless* and your computer sees the dongle as a plain USB HID keyboard.
 
