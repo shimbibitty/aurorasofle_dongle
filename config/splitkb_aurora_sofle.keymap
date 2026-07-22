@@ -98,7 +98,7 @@
 				&trans    &kp LC(Z) &kp LC(X) &kp LC(C) &kp LC(V)  &trans	&trans	&trans  	  &none       &kp LC(V)  &kp LC(C) &kp LC(X)  &none      &trans
 									&trans    &trans    &trans     &trans	&trans	&kp LC(BSPC)  &trans      &trans     &trans    &trans
             >;
-             sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp LC(RIGHT) LC(LEFT)>;
+             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
 
         // ── Layer 2 — RAISE  (function keys, symbols) ──────────
