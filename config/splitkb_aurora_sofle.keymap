@@ -1,7 +1,7 @@
 // ============================================================
 //  splitkb Aurora Sofle v2 — ZMK Keymap
 //  Board:  splitkb Aurora Sofle (left + right)
-//  Layers: 0 BASE  1 LOWER  2 RAISE  3 NUMPAD
+//  Layers: 0 MAC_BASE  1 MAC_LOWER 2 MAC_RAISE 3 WIN_BASE 4 WIN_LOWER  5 WIN_RAISE  6 NUMPAD
 //  No RGB
 // ============================================================
 
@@ -13,19 +13,27 @@
 #include <dt-bindings/zmk/outputs.h>
 
 // ── Layer indices ────────────────────────────────────────────
-#define BASE  0
-#define LOWER   1
-#define RAISE   2
-#define NUMPAD 	3
+#define MAC_BASE   0
+#define MAC_LOWER  1
+#define MAC_RAISE  2
+#define WIN_BASE   3
+#define WIN_LOWER  4
+#define WIN_RAISE  5
+#define NUMPAD 	   6
 
 // ── Convenience aliases ──────────────────────────────────────
-#define XXXXXXX &none
-#define _______ &trans
-#define TILDESC &mt TILDE ESC
-#define SHFTENT &mt RSHFT RETURN
-#define SPCLOW  &lt 1 SPACE
-#define ENTNUM	&lt 3 RETURN
-#define SPCRSE  &lt 2 SPACE
+#define XXXXXXX  &none
+#define _______  &trans
+#define TILDESC  &mt TILDE ESC
+#define SHFTENT  &mt RSHFT RETURN
+#define SCREEN   &kp LG(LS(4))
+#define S_LOW_M  &lt 1 SPACE
+#define S_RSE_M  &lt 2 SPACE
+#define S_LOW_W  &lt 4 SPACE
+#define S_RSE_W  &lt 5 SPACE
+#define ENTNUM   &lt 6 RETURN
+#define TO_WIN   &tog 3 RETURN
+#define TO_MAC   &tog 0 RETURN
 
 / {
     // ── Combos ──────────────────────────────────────────────
@@ -53,8 +61,11 @@
     keymap {
         compatible = "zmk,keymap";
 
-        // ── Layer 0 — BASE ────────────────────────────────
-        // ┌─────┬─────┬─────┬─────┬─────┬─────┐                ┌─────┬─────┬─────┬─────┬─────┬─────┐
+		// ── Layer 0 — MAC_BASE ────────────────────────────────
+		//
+		// Control (or Ctrl) ⌃ | Option (or Alt) ⌥ | Command (or Cmd) ⌘ | Fn (Function) or Globe
+        //
+		// ┌─────┬─────┬─────┬─────┬─────┬─────┐                ┌─────┬─────┬─────┬─────┬─────┬─────┐
         // │ ESC │  1  │  2  │  3  │  4  │  5  │                │  6  │  7  │  8  │  9  │  0  │BSPC │
         // ├─────┼─────┼─────┼─────┼─────┼─────┤                ├─────┼─────┼─────┼─────┼─────┼─────┤
         // │ TAB │  Q  │  W  │  E  │  R  │  T  │                │  Y  │  U  │  I  │  O  │  P  │ DEL │
@@ -63,45 +74,51 @@
         // ├─────┼─────┼─────┼─────┼─────┼─────┼─────┐    ┌─────┼─────┼─────┼─────┼─────┼─────┼─────┤
         // │SHFT │  Z  │  X  │  C  │  V  │  B  │MUTE │    │PLAY │  N  │  M  │  ,  │  .  │  /  │S/RET│
         // └─────┴─────┼─────┼─────┼─────┼─────┼─────┤    ├─────┼─────┼─────┼─────┼─────┼─────┴─────┘
-        //             │ GUI │ ALT │CTRL │SPC/L│RET/N│    │BSPC │SPC/R│CTRL │ ALT │ GUI │
+        //             │CTRL │ ALT │ GUI │SPC/L│RET/N│    │BSPC │SPC/R│GUI  │ ALT │CTRL │
         //             └─────┴─────┴─────┴─────┴─────┘    └─────┴─────┴─────┴─────┴─────┘
-        qwerty_layer {
-            display-name = "BASE";
+        mac_base_layer {
+            display-name = "MAC_BASE";
             bindings = <
                 &kp ESC   &kp N1 &kp N2   &kp N3   &kp N4    &kp N5                        &kp N6  &kp N7    &kp N8    &kp N9   &kp N0   &kp BSPC
 				&kp TAB   &kp Q  &kp W    &kp E    &kp R     &kp T                         &kp Y   &kp U     &kp I     &kp O    &kp P    &kp DEL
 				&kp CAPS  &kp A  &kp S    &kp D    &kp F     &kp G                         &kp H   &kp J     &kp K     &kp L    &kp SEMI &kp SQT
 				&kp LSHFT &kp Z	 &kp X    &kp C    &kp V  	 &kp B	 &kp C_MUTE	  &kp C_PP &kp N   &kp M     &kp COMMA &kp DOT  &kp FSLH SHFTENT
-								 &kp LGUI &kp LALT &kp LCTRL SPCLOW  ENTNUM   	  &kp BSPC SPCRSE  &kp RCTRL &kp RALT  &kp RGUI
+								&kp LCTRL &kp LALT &kp LGUI  S_LOW_M ENTNUM   	  &kp BSPC S_RSE_M &kp RGUI  &kp RALT  &kp RCTRL
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp C_NEXT C_PREV>;
         };
 
-        // ── Layer 1 — LOWER  (shortcuts, navigation) ─────────────
-        // ┌─────┬─────┬─────┬─────┬─────┬─────┐                ┌─────┬─────┬─────┬─────┬─────┬─────┐
+        // ── Layer 1 — MAC_LOWER  (shortcuts, navigation) ─────────────
+		//
+		// Control (or Ctrl) ⌃ | Option (or Alt) ⌥ | Command (or Cmd) ⌘ | Fn (Function) or Globe
+        //
+		// ┌─────┬─────┬─────┬─────┬─────┬─────┐                ┌─────┬─────┬─────┬─────┬─────┬─────┐
         // │ ESC │     │     │     │     │     │                │     │     │     │     │  -  │BSPC │
         // ├─────┼─────┼─────┼─────┼─────┼─────┤                ├─────┼─────┼─────┼─────┼─────┼─────┤
-        // │ TAB │     │     │PGUP │     │     │                │     │CTR+U│  UP │     │     │ DEL │
+        // │ APP │QUIT │     │PGUP │     │     │                │     │CTR+U│  UP │     │     │ DEL │
         // ├─────┼─────┼─────┼─────┼─────┼─────┤                ├─────┼─────┼─────┼─────┼─────┼─────┤
         // │     │ ALL │SAVE │PGDN │PRNT │     │                │HOME │LEFT │DOWN │RIGHT│ END │     │
         // ├─────┼─────┼─────┼─────┼─────┼─────┼─────┐    ┌─────┼─────┼─────┼─────┼─────┼─────┼─────┤
         // │SHFT │UNDO │ CUT │COPY │PASTE│     │MUTE │    │PLAY │     │PASTE│COPY │ CUT │     │S/RET│
         // └─────┴─────┼─────┼─────┼─────┼─────┼─────┤    ├─────┼─────┼─────┼─────┼─────┼─────┴─────┘
-        //             │ GUI │ ALT │CTRL │     │RET/N│    │CBSPC│SPC/R│CTRL │ ALT │ GUI │
+        //             │FORCE│ ALT │GUI  │     │RET/N│    │CBSPC│SPC/R│GUI  │ ALT │CTRL │
         //             └─────┴─────┴─────┴─────┴─────┘    └─────┴─────┴─────┴─────┴─────┘
-        lower_layer {
-            display-name = "LOWER";
+        mac_lower_layer {
+            display-name = "MAC_LOWER";
             bindings = <
-				&trans    &none     &none     &none     &none      &none                   		  &none       &none      &none     &none      &kp MINUS  &trans
-				&trans    &none     &none     &kp PGUP  &none      &none                   		  &none       &kp RC(U)  &kp UP    &none      &none      &trans
-				&none     &kp LC(A) &kp LC(S) &kp PGDN  &kp PSCRN  &none		           		  &kp HOME    &kp LEFT   &kp DOWN  &kp RIGHT  &kp END    &none
-				&trans    &kp LC(Z) &kp LC(X) &kp LC(C) &kp LC(V)  &trans	&trans	&trans  	  &none       &kp LC(V)  &kp LC(C) &kp LC(X)  &none      &trans
-									&trans    &trans    &trans     &trans	&trans	&kp LC(BSPC)  &trans      &trans     &trans    &trans
+				&trans      &none     &none     &none     &none      &none                   		  &none       &none      &none     &none      &kp MINUS  &trans
+				&kp LG(TAB) &kp LG(Q) &none     &kp PGUP  &none      &none                   		  &none       &kp RC(U)  &kp UP    &none      &none      &trans
+				&none       &kp LG(A) &kp LG(S) &kp PGDN  SCREEN     &none		           		  &kp HOME    &kp LEFT   &kp DOWN  &kp RIGHT  &kp END    &none
+				&trans      &kp LG(Z) &kp LG(X) &kp LG(C) &kp LG(V)  &trans	&trans	&trans  	  &none       &kp LC(V)  &kp LC(C) &kp LC(X)  &none      &trans
+								      &trans  &trans &kp LG(LA(ESC)) &trans	&trans	&kp LC(BSPC)  &trans      &trans     &trans    &trans
             >;
              sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
 
-        // ── Layer 2 — RAISE  (function keys, symbols) ──────────
+        // ── Layer 2 — MAC_RAISE  (function keys, symbols) ──────────
+		//
+		// Control (or Ctrl) ⌃ | Option (or Alt) ⌥ | Command (or Cmd) ⌘ | Fn (Function) or Globe
+		//		
 		// ┌─────┬─────┬─────┬─────┬─────┬─────┐                ┌─────┬─────┬─────┬─────┬─────┬─────┐
         // │ ESC │     │     │     │     │     │                │     │  $  │  (  │  )  │  -  │BSPC │
         // ├─────┼─────┼─────┼─────┼─────┼─────┤                ├─────┼─────┼─────┼─────┼─────┼─────┤
@@ -111,10 +128,10 @@
         // ├─────┼─────┼─────┼─────┼─────┼─────┼─────┐    ┌─────┼─────┼─────┼─────┼─────┼─────┼─────┤
         // │SHFT │ F9  │ F10 │ F11 │ F12 │     │MUTE │    │PLAY │  *  │  &  │  [  │  ]  │  |  │S/RET│
         // └─────┴─────┼─────┼─────┼─────┼─────┼─────┤    ├─────┼─────┼─────┼─────┼─────┼─────┴─────┘
-        //             │ GUI │ ALT │CTRL │SPC/L│RET/N│    │BSPC │     │CTRL │ ALT │ GUI │
+        //             │CTRL │ ALT │GUI  │SPC/L│RET/N│    │BSPC │     │ GUI │ ALT │CTRL │
         //             └─────┴─────┴─────┴─────┴─────┘    └─────┴─────┴─────┴─────┴─────┘
-        raise_layer {
-            display-name = "RAISE";
+        mac_raise_layer {
+            display-name = "MAC_RAISE";
              bindings = <
 				&trans   &none   &none   &none   &none   &none                        &none     &kp DLLR   &kp LPAR   &kp RPAR   &kp MINUS  &trans
 				&trans   &kp F1  &kp F2  &kp F3  &kp F4  &kp F5                       &kp EXCL  &kp AT     &kp HASH   &kp DLLR   &kp PRCNT  &kp CARET
@@ -126,13 +143,87 @@
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
 		
-		// ── Layer 3 — NUMPAD (Numpad) ───────────
+
+		// ── Layer 3 — WIN_BASE ────────────────────────────────
+        // ┌─────┬─────┬─────┬─────┬─────┬─────┐                ┌─────┬─────┬─────┬─────┬─────┬─────┐
+        // │ ESC │  1  │  2  │  3  │  4  │  5  │                │  6  │  7  │  8  │  9  │  0  │BSPC │
+        // ├─────┼─────┼─────┼─────┼─────┼─────┤                ├─────┼─────┼─────┼─────┼─────┼─────┤
+        // │ TAB │  Q  │  W  │  E  │  R  │  T  │                │  Y  │  U  │  I  │  O  │  P  │ DEL │
+        // ├─────┼─────┼─────┼─────┼─────┼─────┤                ├─────┼─────┼─────┼─────┼─────┼─────┤
+        // │CAPS │  A  │  S  │  D  │  F  │  G  │                │  H  │  J  │  K  │  L  │  ;  │  '  │
+        // ├─────┼─────┼─────┼─────┼─────┼─────┼─────┐    ┌─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+        // │SHFT │  Z  │  X  │  C  │  V  │  B  │MUTE │    │PLAY │  N  │  M  │  ,  │  .  │  /  │S/RET│
+        // └─────┴─────┼─────┼─────┼─────┼─────┼─────┤    ├─────┼─────┼─────┼─────┼─────┼─────┴─────┘
+        //             │ GUI │ ALT │CTRL │SPC/L│RET/N│    │BSPC │SPC/R│CTRL │ ALT │ GUI │
+        //             └─────┴─────┴─────┴─────┴─────┘    └─────┴─────┴─────┴─────┴─────┘
+        win_base_layer {
+            display-name = "WIN_BASE";
+            bindings = <
+                &kp ESC   &kp N1 &kp N2   &kp N3   &kp N4    &kp N5                        &kp N6  &kp N7    &kp N8    &kp N9   &kp N0   &kp BSPC
+				&kp TAB   &kp Q  &kp W    &kp E    &kp R     &kp T                         &kp Y   &kp U     &kp I     &kp O    &kp P    &kp DEL
+				&kp CAPS  &kp A  &kp S    &kp D    &kp F     &kp G                         &kp H   &kp J     &kp K     &kp L    &kp SEMI &kp SQT
+				&kp LSHFT &kp Z	 &kp X    &kp C    &kp V  	 &kp B	 &kp C_MUTE	  &kp C_PP &kp N   &kp M     &kp COMMA &kp DOT  &kp FSLH SHFTENT
+								 &kp LGUI &kp LALT &kp LCTRL SPCLOW  ENTNUM   	  &kp BSPC SPCRSE  &kp RCTRL &kp RALT  &kp RGUI
+            >;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp C_NEXT C_PREV>;
+        };
+
+        // ── Layer 4 — WIN_LOWER  (shortcuts, navigation) ─────────────
+        // ┌─────┬─────┬─────┬─────┬─────┬─────┐                ┌─────┬─────┬─────┬─────┬─────┬─────┐
+        // │ ESC │     │     │     │     │     │                │     │     │     │     │  -  │BSPC │
+        // ├─────┼─────┼─────┼─────┼─────┼─────┤                ├─────┼─────┼─────┼─────┼─────┼─────┤
+        // │ TAB │     │     │PGUP │     │     │                │     │CTR+U│  UP │     │     │ DEL │
+        // ├─────┼─────┼─────┼─────┼─────┼─────┤                ├─────┼─────┼─────┼─────┼─────┼─────┤
+        // │     │ ALL │SAVE │PGDN │PRNT │     │                │HOME │LEFT │DOWN │RIGHT│ END │     │
+        // ├─────┼─────┼─────┼─────┼─────┼─────┼─────┐    ┌─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+        // │SHFT │UNDO │ CUT │COPY │PASTE│     │MUTE │    │PLAY │     │PASTE│COPY │ CUT │     │S/RET│
+        // └─────┴─────┼─────┼─────┼─────┼─────┼─────┤    ├─────┼─────┼─────┼─────┼─────┼─────┴─────┘
+        //             │ GUI │ ALT │CTRL │     │RET/N│    │CBSPC│SPC/R│CTRL │ ALT │ GUI │
+        //             └─────┴─────┴─────┴─────┴─────┘    └─────┴─────┴─────┴─────┴─────┘
+        win_lower_layer {
+            display-name = "WIN_LOWER";
+            bindings = <
+				&trans    &none     &none     &none     &none      &none                   		  &none       &none      &none     &none      &kp MINUS  &trans
+				&trans    &none     &none     &kp PGUP  &none      &none                   		  &none       &kp RC(U)  &kp UP    &none      &none      &trans
+				&none     &kp LC(A) &kp LC(S) &kp PGDN  &kp PSCRN  &none		           		  &kp HOME    &kp LEFT   &kp DOWN  &kp RIGHT  &kp END    &none
+				&trans    &kp LC(Z) &kp LC(X) &kp LC(C) &kp LC(V)  &trans	&trans	&trans  	  &none       &kp LC(V)  &kp LC(C) &kp LC(X)  &none      &trans
+									&trans    &trans    &trans     &trans	&trans	&kp LC(BSPC)  &trans      &trans     &trans    &trans
+            >;
+             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp LC(RIGHT) LC(LEFT)>;
+        };
+
+        // ── Layer 5 — WIN_RAISE  (function keys, symbols) ──────────
 		// ┌─────┬─────┬─────┬─────┬─────┬─────┐                ┌─────┬─────┬─────┬─────┬─────┬─────┐
-        // │ ESC │     │     │     │     │     │                │     │NUMLK│     │     │  -  │BSPC │
+        // │ ESC │     │     │     │     │     │                │     │  $  │  (  │  )  │  -  │BSPC │
+        // ├─────┼─────┼─────┼─────┼─────┼─────┤                ├─────┼─────┼─────┼─────┼─────┼─────┤
+        // │ TAB │ F1  │ F2  │ F3  │ F4  │ F5  │                │  !  │  @  │  #  │  $  │  %  │  ^  │
+        // ├─────┼─────┼─────┼─────┼─────┼─────┤                ├─────┼─────┼─────┼─────┼─────┼─────┤
+        // │     │ F5  │ F6  │ F7  │ F8  │     │                │  ~  │  _  │  -  │  +  │  =  │  \  │
+        // ├─────┼─────┼─────┼─────┼─────┼─────┼─────┐    ┌─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+        // │SHFT │ F9  │ F10 │ F11 │ F12 │     │MUTE │    │PLAY │  *  │  &  │  [  │  ]  │  |  │S/RET│
+        // └─────┴─────┼─────┼─────┼─────┼─────┼─────┤    ├─────┼─────┼─────┼─────┼─────┼─────┴─────┘
+        //             │ GUI │ ALT │CTRL │SPC/L│RET/N│    │BSPC │     │CTRL │ ALT │ GUI │
+        //             └─────┴─────┴─────┴─────┴─────┘    └─────┴─────┴─────┴─────┴─────┘
+        win_raise_layer {
+            display-name = "WIN_RAISE";
+             bindings = <
+				&trans   &none   &none   &none   &none   &none                        &none     &kp DLLR   &kp LPAR   &kp RPAR   &kp MINUS  &trans
+				&trans   &kp F1  &kp F2  &kp F3  &kp F4  &kp F5                       &kp EXCL  &kp AT     &kp HASH   &kp DLLR   &kp PRCNT  &kp CARET
+				&none    &kp F5  &kp F6  &kp F7  &kp F8  &none                        &kp TILDE &kp UNDER  &kp MINUS  &kp PLUS   &kp EQUAL  &kp BSLH
+				&trans   &kp F9  &kp F10 &kp F11 &kp F12 &none     &trans   &trans    &kp ASTRK &kp AMPS   &kp LBKT   &kp RBKT   &kp PIPE   &trans
+								 &trans  &trans  &trans  &trans    &trans   &trans    &trans    &trans     &trans     &trans
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+        };
+		
+		// ── Layer 6 — NUMPAD (Numpad) ───────────
+		// ┌─────┬─────┬─────┬─────┬─────┬─────┐                ┌─────┬─────┬─────┬─────┬─────┬─────┐
+        // │ ESC │     │     │     │     │     │                │INSRT│NUMLK│     │     │  -  │BSPC │
         // ├─────┼─────┼─────┼─────┼─────┼─────┤                ├─────┼─────┼─────┼─────┼─────┼─────┤
         // │ TAB │     │     │     │     │     │                │  /  │  7  │  8  │  9  │  -  │ DEL │
         // ├─────┼─────┼─────┼─────┼─────┼─────┤                ├─────┼─────┼─────┼─────┼─────┼─────┤
-        // │     │     │     │     │INSRT│     │                │     │  4  │  5  │  6  │  +  │     │
+        // │     │     │     │     │     │     │                │     │  4  │  5  │  6  │  +  │     │
         // ├─────┼─────┼─────┼─────┼─────┼─────┼─────┐    ┌─────┼─────┼─────┼─────┼─────┼─────┼─────┤
         // │SHFT │     │     │     │     │     │MUTE │    │PLAY │  *  │  1  │  2  │  3  │  +  │S/RET│
         // └─────┴─────┼─────┼─────┼─────┼─────┼─────┤    ├─────┼─────┼─────┼─────┼─────┼─────┴─────┘
@@ -141,11 +232,11 @@
         numpad_layer {
 			display-name = "NUMPAD";
             bindings = <
-				&kp ESC		&none	&none	 &none	  &none	    &none						&none			&kp KP_NUM &none	&none	&kp MINUS		&kp BSPC
+				&kp ESC		&none	&none	 &none	  &none	    &none						&kp INS			&kp KP_NUM &none	&none	&kp MINUS		&kp BSPC
 				&kp TAB		&none	&none	 &none	  &none	    &none						&kp KP_DIVIDE	&kp N7	   &kp N8	&kp N9	&kp KP_MINUS	&kp DEL
-				&none		&none	&none	 &kp INS  &none	    &none						&none			&kp N4	   &kp N5	&kp N6	&kp KP_PLUS		&none
+				&none		&none	&none	 &none    &none	    &none						&none			&kp N4	   &kp N5	&kp N6	&kp KP_PLUS		&none
 				&kp LSHFT	&none	&none	 &none	  &none	    &none	&none		&none	&kp KP_MULTIPLY	&kp N1	   &kp N2	&kp N3	&kp KP_PLUS		SHFTENT
-									&kp LGUI &kp LALT &kp LCTRL SPCLOW	&trans   	&kp KP_ENTER &kp SPACE  &kp N0	   &none    &kp KP_DOT
+									&kp LGUI &kp LALT &kp LCTRL SPCLOW	&trans   	&kp KP_ENTER &kp SPACE  &kp N0	   &none    &kp DOT
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
