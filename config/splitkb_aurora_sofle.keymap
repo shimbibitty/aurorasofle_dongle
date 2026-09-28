@@ -93,7 +93,7 @@
 		// Control (or Ctrl) ⌃ | Option (or Alt) ⌥ | Command (or Cmd) ⌘ | Fn (Function) or Globe
         //
 		// ┌─────┬─────┬─────┬─────┬─────┬─────┐                ┌─────┬─────┬─────┬─────┬─────┬─────┐
-        // │ ESC │     │     │     │     │     │                │     │     │     │     │  -  │BSPC │
+        // │ ESC │     │ WIN │     │     │     │                │     │     │     │     │  -  │BSPC │
         // ├─────┼─────┼─────┼─────┼─────┼─────┤                ├─────┼─────┼─────┼─────┼─────┼─────┤
         // │ APP │QUIT │     │PGUP │     │     │                │     │CTR+U│  UP │     │     │ DEL │
         // ├─────┼─────┼─────┼─────┼─────┼─────┤                ├─────┼─────┼─────┼─────┼─────┼─────┤
@@ -106,8 +106,8 @@
         mac_lower_layer {
             display-name = "MAC_LOWER";
             bindings = <
-				&trans      &none     &none     &none     &none      &none                   		  &none       &none      &none     &none      &kp MINUS  &trans
-				&kp LG(TAB) &kp LG(Q) &none     &kp PGUP  &none      &none                   		  &none       &kp RC(U)  &kp UP    &none      &none      &trans
+				&trans      &none     TO_WIN    &none     &none      &none                 		  &none       &none      &none     &none      &kp MINUS  &trans
+				&kp LG(TAB) &kp LG(Q) &none     &kp PGUP  &none      &none                 		  &none       &kp RC(U)  &kp UP    &none      &none      &trans
 				&none       &kp LG(A) &kp LG(S) &kp PGDN  SCREEN     &none		           		  &kp HOME    &kp LEFT   &kp DOWN  &kp RIGHT  &kp END    &none
 				&trans      &kp LG(Z) &kp LG(X) &kp LG(C) &kp LG(V)  &trans	&trans	&trans  	  &none       &kp LC(V)  &kp LC(C) &kp LC(X)  &none      &trans
 								      &trans  &trans &kp LG(LA(ESC)) &trans	&trans	&kp LC(BSPC)  &trans      &trans     &trans    &trans
@@ -142,7 +142,6 @@
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
-		
 
 		// ── Layer 3 — WIN_BASE ────────────────────────────────
         // ┌─────┬─────┬─────┬─────┬─────┬─────┐                ┌─────┬─────┬─────┬─────┬─────┬─────┐
@@ -163,14 +162,14 @@
 				&kp TAB   &kp Q  &kp W    &kp E    &kp R     &kp T                         &kp Y   &kp U     &kp I     &kp O    &kp P    &kp DEL
 				&kp CAPS  &kp A  &kp S    &kp D    &kp F     &kp G                         &kp H   &kp J     &kp K     &kp L    &kp SEMI &kp SQT
 				&kp LSHFT &kp Z	 &kp X    &kp C    &kp V  	 &kp B	 &kp C_MUTE	  &kp C_PP &kp N   &kp M     &kp COMMA &kp DOT  &kp FSLH SHFTENT
-								 &kp LGUI &kp LALT &kp LCTRL SPCLOW  ENTNUM   	  &kp BSPC SPCRSE  &kp RCTRL &kp RALT  &kp RGUI
+								 &kp LGUI &kp LALT &kp LCTRL S_LOW_W  ENTNUM   	  &kp BSPC S_RSE_W  &kp RCTRL &kp RALT  &kp RGUI
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp C_NEXT C_PREV>;
         };
 
         // ── Layer 4 — WIN_LOWER  (shortcuts, navigation) ─────────────
         // ┌─────┬─────┬─────┬─────┬─────┬─────┐                ┌─────┬─────┬─────┬─────┬─────┬─────┐
-        // │ ESC │     │     │     │     │     │                │     │     │     │     │  -  │BSPC │
+        // │ ESC │     │ MAC │     │     │     │                │     │     │     │     │  -  │BSPC │
         // ├─────┼─────┼─────┼─────┼─────┼─────┤                ├─────┼─────┼─────┼─────┼─────┼─────┤
         // │ TAB │     │     │PGUP │     │     │                │     │CTR+U│  UP │     │     │ DEL │
         // ├─────┼─────┼─────┼─────┼─────┼─────┤                ├─────┼─────┼─────┼─────┼─────┼─────┤
@@ -183,7 +182,7 @@
         win_lower_layer {
             display-name = "WIN_LOWER";
             bindings = <
-				&trans    &none     &none     &none     &none      &none                   		  &none       &none      &none     &none      &kp MINUS  &trans
+				&trans    &none     TO_MAC     &none     &none      &none                   		  &none       &none      &none     &none      &kp MINUS  &trans
 				&trans    &none     &none     &kp PGUP  &none      &none                   		  &none       &kp RC(U)  &kp UP    &none      &none      &trans
 				&none     &kp LC(A) &kp LC(S) &kp PGDN  &kp PSCRN  &none		           		  &kp HOME    &kp LEFT   &kp DOWN  &kp RIGHT  &kp END    &none
 				&trans    &kp LC(Z) &kp LC(X) &kp LC(C) &kp LC(V)  &trans	&trans	&trans  	  &none       &kp LC(V)  &kp LC(C) &kp LC(X)  &none      &trans
@@ -236,7 +235,7 @@
 				&kp TAB		&none	&none	 &none	  &none	    &none						&kp KP_DIVIDE	&kp N7	   &kp N8	&kp N9	&kp KP_MINUS	&kp DEL
 				&none		&none	&none	 &none    &none	    &none						&none			&kp N4	   &kp N5	&kp N6	&kp KP_PLUS		&none
 				&kp LSHFT	&none	&none	 &none	  &none	    &none	&none		&none	&kp KP_MULTIPLY	&kp N1	   &kp N2	&kp N3	&kp KP_PLUS		SHFTENT
-									&kp LGUI &kp LALT &kp LCTRL SPCLOW	&trans   	&kp KP_ENTER &kp SPACE  &kp N0	   &none    &kp DOT
+									&kp LGUI &kp LALT &kp LCTRL &none	&trans   	&kp KP_ENTER &kp SPACE  &kp N0	   &none    &kp DOT
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
