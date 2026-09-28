@@ -15,14 +15,14 @@ manifest:
       remote: zmkfirmware
       revision: v0.3
       import: app/west.yml
-    - name: prospector-zmk-module                 # <--- and these
-      remote: tokyo2006                          # <---
-      revision: main  
-    - name: zmk-dongle-display
-      remote: englmaxi
-      revision: v0.3
-    - name: mario-peripheral-animation
-      remote: gpeye
-      revision: main 
+    #- name: prospector-zmk-module                 # <--- and these
+      #remote: tokyo2006                          # <---
+      #revision: main  
+    #- name: zmk-dongle-display
+      #remote: englmaxi
+      #revision: v0.3
+    #- name: mario-peripheral-animation
+      #remote: gpeye
+      #revision: main 
   self:
     path: config
