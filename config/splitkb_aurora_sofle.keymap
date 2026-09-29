@@ -106,7 +106,7 @@
         mac_lower_layer {
             display-name = "MAC_LOWER";
             bindings = <
-				&trans      &none     TO_WIN    &none     &none      &none                 		  &none       &none      &none     &none      &kp MINUS  &trans
+				&trans      &none     &tog 3    &none     &none      &none                 		  &none       &none      &none     &none      &kp MINUS  &trans
 				&kp LG(TAB) &kp LG(Q) &none     &kp PGUP  &none      &none                 		  &none       &kp RC(U)  &kp UP    &none      &none      &trans
 				&none       &kp LG(A) &kp LG(S) &kp PGDN  SCREEN     &none		           		  &kp HOME    &kp LEFT   &kp DOWN  &kp RIGHT  &kp END    &none
 				&trans      &kp LG(Z) &kp LG(X) &kp LG(C) &kp LG(V)  &trans	&trans	&trans  	  &none       &kp LC(V)  &kp LC(C) &kp LC(X)  &none      &trans
@@ -182,7 +182,7 @@
         win_lower_layer {
             display-name = "WIN_LOWER";
             bindings = <
-				&trans    &none     TO_MAC     &none     &none      &none                   		  &none       &none      &none     &none      &kp MINUS  &trans
+				&trans    &none     &tog 0     &none     &none      &none                   		  &none       &none      &none     &none      &kp MINUS  &trans
 				&trans    &none     &none     &kp PGUP  &none      &none                   		  &none       &kp RC(U)  &kp UP    &none      &none      &trans
 				&none     &kp LC(A) &kp LC(S) &kp PGDN  &kp PSCRN  &none		           		  &kp HOME    &kp LEFT   &kp DOWN  &kp RIGHT  &kp END    &none
 				&trans    &kp LC(Z) &kp LC(X) &kp LC(C) &kp LC(V)  &trans	&trans	&trans  	  &none       &kp LC(V)  &kp LC(C) &kp LC(X)  &none      &trans
