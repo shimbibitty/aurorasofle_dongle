@@ -18,17 +18,17 @@
 #
 ---
 include:
-  - board: nice_nano_v2
+  - board: nice_nano//zmk
     shield: splitkb_aurora_sofle_dongle
     snippet: studio-rpc-usb-uart
     cmake-args: -DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_STUDIO_LOCKING=n
-  - board: nice_nano_v2
+  - board: nice_nano//zmk
     shield: splitkb_aurora_sofle_left
     cmake-args: -DCONFIG_ZMK_SPLIT=y -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
-  - board: nice_nano_v2
+  - board: nice_nano//zmk
     shield: splitkb_aurora_sofle_right
     cmake-args: -DCONFIG_ZMK_SPLIT=y -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
-  - board: nice_nano_v2
+  - board: nice_nano//zmk
     shield: settings_reset
   - board: xiao_ble
     shield: splitkb_aurora_sofle_dongle prospector_adapter
