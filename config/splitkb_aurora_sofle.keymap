@@ -32,8 +32,6 @@
 #define S_LOW_W  &lt 4 SPACE
 #define S_RSE_W  &lt 5 SPACE
 #define ENTNUM   &lt 6 RETURN
-#define TO_WIN   &tog 3 RETURN
-#define TO_MAC   &tog 0 RETURN
 
 / {
     // ── Combos ──────────────────────────────────────────────
@@ -182,7 +180,7 @@
         win_lower_layer {
             display-name = "WIN_LOWER";
             bindings = <
-				&trans    &none     &tog 0     &none     &none      &none                   		  &none       &none      &none     &none      &kp MINUS  &trans
+				&trans    &none     &tog 3     &none     &none      &none                   		  &none       &none      &none     &none      &kp MINUS  &trans
 				&trans    &none     &none     &kp PGUP  &none      &none                   		  &none       &kp RC(U)  &kp UP    &none      &none      &trans
 				&none     &kp LC(A) &kp LC(S) &kp PGDN  &kp PSCRN  &none		           		  &kp HOME    &kp LEFT   &kp DOWN  &kp RIGHT  &kp END    &none
 				&trans    &kp LC(Z) &kp LC(X) &kp LC(C) &kp LC(V)  &trans	&trans	&trans  	  &none       &kp LC(V)  &kp LC(C) &kp LC(X)  &none      &trans
