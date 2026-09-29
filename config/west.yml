@@ -8,6 +8,8 @@ manifest:
       url-base: https://github.com/tokyo2006
     - name: englmaxi
       url-base: https://github.com/englmaxi
+    - name: a741725193
+      url-base: https://github.com/a741725193
     # Additional modules containing boards/shields/custom code can be listed here as well
     # See https://docs.zephyrproject.org/3.2.0/develop/west/manifest.html#projects
   projects:
@@ -23,6 +25,9 @@ manifest:
       revision: v0.3
     - name: mario-peripheral-animation
       remote: gpeye
-      revision: main 
+      revision: main
+    - name: zmk-board-eyelash
+      remote: a741725193
+      revision: v4.0
   self:
     path: config
