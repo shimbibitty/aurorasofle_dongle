@@ -2,14 +2,14 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-    - name: gpeye
-      url-base: https://github.com/GPeye
-    - name: tokyo2006
-      url-base: https://github.com/tokyo2006
-    - name: englmaxi
-      url-base: https://github.com/englmaxi
-    - name: a741725193
-      url-base: https://github.com/a741725193
+#    - name: gpeye
+#      url-base: https://github.com/GPeye
+#    - name: tokyo2006
+#      url-base: https://github.com/tokyo2006
+#    - name: englmaxi
+#      url-base: https://github.com/englmaxi
+#    - name: a741725193
+#      url-base: https://github.com/a741725193
     # Additional modules containing boards/shields/custom code can be listed here as well
     # See https://docs.zephyrproject.org/3.2.0/develop/west/manifest.html#projects
   projects:
@@ -17,17 +17,17 @@ manifest:
       remote: zmkfirmware
       revision: v0.3
       import: app/west.yml
-    - name: prospector-zmk-module                 # <--- and these
-      remote: tokyo2006                          # <---
-      revision: main  
-    - name: zmk-dongle-display
-      remote: englmaxi
-      revision: v0.3
-    - name: mario-peripheral-animation
-      remote: gpeye
-      revision: main
-    - name: zmk-board-eyelash
-      remote: a741725193
-      revision: v4.0
+#    - name: prospector-zmk-module                 # <--- and these
+#      remote: tokyo2006                          # <---
+#      revision: main  
+#    - name: zmk-dongle-display
+#      remote: englmaxi
+#      revision: v0.3
+#    - name: mario-peripheral-animation
+#      remote: gpeye
+#      revision: main
+#    - name: zmk-board-eyelash
+#      remote: a741725193
+#      revision: v4.0
   self:
     path: config
